@@ -1,6 +1,7 @@
 # covid_tracker
 
-A new Flutter project.
+This project is fetching data from API and show them
+
 
 ## Getting Started
 
