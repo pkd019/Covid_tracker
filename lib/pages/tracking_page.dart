@@ -113,16 +113,45 @@ class _trackingPageState extends State<trackingPage> {
                             .contains(searchController.text.toLowerCase())) {
                           return Column(
                             children: [
-                              ListTile(
-                                leading: Image(
-                                  height: 50,
-                                  width: 50,
-                                  image: NetworkImage(snapshot.data![index]
-                                      ['countryInfo']['flag']),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => fulldata(
+                                                image: snapshot.data![index]
+                                                    ['countryInfo']['flag'],
+                                                name: snapshot.data![index]
+                                                    ['country'],
+                                                totalCases: snapshot
+                                                    .data![index]['cases'],
+                                                totalRecovered: snapshot
+                                                    .data![index]['recovered'],
+                                                totalDeaths: snapshot
+                                                    .data![index]['deaths'],
+                                                active: snapshot.data![index]
+                                                    ['active'],
+                                                test: snapshot.data![index]
+                                                    ['tests'],
+                                                todayRecovered:
+                                                    snapshot.data![index]
+                                                        ['todayRecovered'],
+                                                critical: snapshot.data![index]
+                                                    ['critical'],
+                                              )));
+                                },
+                                child: ListTile(
+                                  leading: Image(
+                                    height: 50,
+                                    width: 50,
+                                    image: NetworkImage(snapshot.data![index]
+                                        ['countryInfo']['flag']),
+                                  ),
+                                  title: Text(snapshot.data![index]['country']),
+                                  subtitle: Text("Effected: " +
+                                      snapshot.data![index]['cases']
+                                          .toString()),
                                 ),
-                                title: Text(snapshot.data![index]['country']),
-                                subtitle: Text("Effected: " +
-                                    snapshot.data![index]['cases'].toString()),
                               ),
                               Divider()
                             ],
